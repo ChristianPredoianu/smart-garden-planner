@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import PlantCard from '@/components/cards/PlantCard';
 import { getAllPlants, getPlantsByType } from '@/lib/plants';
 import { Plant } from '@/lib/types';
