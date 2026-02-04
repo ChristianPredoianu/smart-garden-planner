@@ -1,9 +1,8 @@
 'use client';
 
 import { Plant } from '@/lib/types';
-import { Sprout, Sun, Droplets, Calendar } from 'lucide-react';
+import { Sprout, Sun, Droplets, Calendar, Info } from 'lucide-react';
 import { motion } from 'framer-motion';
-import { h1 } from 'framer-motion/client';
 
 interface PlantCardProps {
   plant: Plant;
@@ -13,8 +12,34 @@ interface PlantCardProps {
 
 export default function PlantCard({ plant, onClick, compact = false }: PlantCardProps) {
   const handleClick = () => {
-    if (onClick) onClick(plant);
+    if (onClick) {
+      onClick(plant);
+    }
   };
+
+  if (compact) {
+    return (
+      <motion.div
+        whileHover={{ scale: 1.02 }}
+        whileTap={{ scale: 0.98 }}
+        onClick={handleClick}
+        className='bg-white rounded-lg shadow p-3 cursor-pointer border border-green-100 hover:border-green-300 transition-colors'
+      >
+        <div className='flex items-center'>
+          <div
+            className='w-8 h-8 rounded-full mr-3 flex items-center justify-center'
+            style={{ backgroundColor: plant.color }}
+          >
+            <Sprout className='h-4 w-4 text-white' />
+          </div>
+          <div>
+            <h4 className='font-semibold text-gray-800'>{plant.name}</h4>
+            <p className='text-xs text-gray-500'>{plant.latinName}</p>
+          </div>
+        </div>
+      </motion.div>
+    );
+  }
 
   return (
     <motion.div
