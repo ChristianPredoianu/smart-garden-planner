@@ -2,6 +2,7 @@
 
 import { useState, useMemo } from 'react';
 import SearchInput from '@/components/ui/SearchInput';
+import SelectWithIcons from '@/components/ui/SelectWithIcons';
 import PlantCard from '@/components/cards/PlantCard';
 import { getAllPlants, getPlantsByType } from '@/lib/plants';
 import { Plant } from '@/lib/types';
@@ -40,21 +41,13 @@ export default function PlantsPage() {
           </div>
 
           {/* Type Filter */}
-          <div className='relative'>
-            <Filter className='absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5 z-10' />
-            <select
-              value={selectedType}
-              onChange={(e) => setSelectedType(e.target.value)}
-              className='pl-10 pr-8 py-2 border border-gray-300 rounded-lg appearance-none focus:ring-2 focus:ring-green-500 focus:border-green-500'
-            >
-              {plantTypes.map((type) => (
-                <option key={type} value={type}>
-                  {type.charAt(0).toUpperCase() + type.slice(1)}
-                </option>
-              ))}
-            </select>
-            <ChevronDown className='absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4' />
-          </div>
+          <SelectWithIcons
+            value={selectedType}
+            onChange={setSelectedType}
+            options={plantTypes}
+            placeholder='Filter by type'
+            icon={Filter}
+          />
 
           {/* View Toggle */}
           <div className='flex bg-gray-100 rounded-lg p-1'>
