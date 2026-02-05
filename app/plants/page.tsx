@@ -5,8 +5,9 @@ import SearchInput from '@/components/ui/SearchInput';
 import SelectWithIcons from '@/components/ui/SelectWithIcons';
 import ViewToggle from '@/components/ui/ViewToggle';
 import PlantCard from '@/components/cards/PlantCard';
+import EmptyResults from '@/components/ui/EmptyResults';
 import { getAllPlants } from '@/lib/plants';
-import { Search, Filter } from 'lucide-react';
+import { Filter } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { usePlantFilters } from '@/hooks/filters/usePlantFilters';
 
@@ -22,6 +23,10 @@ export default function PlantsPage() {
     searchTerm,
     selectedType,
   );
+
+  const plantCards = filteredPlants.map((plant) => (
+    <PlantCard key={plant.id} plant={plant} compact={viewMode === 'list'} />
+  ));
 
   return (
     <div className='space-y-6'>
@@ -69,9 +74,7 @@ export default function PlantsPage() {
             exit={{ opacity: 0 }}
             className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6'
           >
-            {filteredPlants.map((plant) => (
-              <PlantCard key={plant.id} plant={plant} />
-            ))}
+            {plantCards}
           </motion.div>
         ) : (
           <motion.div
@@ -81,21 +84,16 @@ export default function PlantsPage() {
             exit={{ opacity: 0 }}
             className='space-y-4'
           >
-            {filteredPlants.map((plant) => (
-              <PlantCard key={plant.id} plant={plant} compact />
-            ))}
+            {plantCards}
           </motion.div>
         )}
       </AnimatePresence>
 
       {filteredPlants.length === 0 && (
-        <div className='text-center py-12'>
-          <div className='text-gray-400 mb-4'>
-            <Search className='h-16 w-16 mx-auto' />
-          </div>
-          <h3 className='text-xl font-semibold text-gray-600 mb-2'>No plants found</h3>
-          <p className='text-gray-500'>Try adjusting your search or filters</p>
-        </div>
+        <EmptyResults
+          title='No plants found'
+          description='Try adjusting your search or filters'
+        />
       )}
     </div>
   );
