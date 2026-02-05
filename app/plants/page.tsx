@@ -1,19 +1,19 @@
 'use client';
 
-import { useState, useMemo } from 'react';
+import { useState } from 'react';
 import SearchInput from '@/components/ui/SearchInput';
 import SelectWithIcons from '@/components/ui/SelectWithIcons';
+import ViewToggle from '@/components/ui/ViewToggle';
 import PlantCard from '@/components/cards/PlantCard';
-import { getAllPlants, getPlantsByType } from '@/lib/plants';
-import { Plant } from '@/lib/types';
-import { Search, Filter, Grid, List, ChevronDown } from 'lucide-react';
+import { getAllPlants } from '@/lib/plants';
+import { Search, Filter } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { usePlantFilters } from '@/hooks/filters/usePlantFilters';
 
 export default function PlantsPage() {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedType, setSelectedType] = useState<string>('all');
-  const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
+  const [viewMode, setViewMode] = useState<string>('grid');
 
   const allPlants = getAllPlants();
 
@@ -39,7 +39,6 @@ export default function PlantsPage() {
           <div className='flex-1'>
             <SearchInput value={searchTerm} onChange={setSearchTerm} />
           </div>
-
           {/* Type Filter */}
           <SelectWithIcons
             value={selectedType}
@@ -48,28 +47,8 @@ export default function PlantsPage() {
             placeholder='Filter by type'
             icon={Filter}
           />
-
           {/* View Toggle */}
-          <div className='flex bg-gray-100 rounded-lg p-1'>
-            <button
-              onClick={() => setViewMode('grid')}
-              className={`px-4 py-2 rounded-md flex items-center ${
-                viewMode === 'grid' ? 'bg-white shadow' : ''
-              }`}
-            >
-              <Grid className='h-4 w-4 mr-2' />
-              Grid
-            </button>
-            <button
-              onClick={() => setViewMode('list')}
-              className={`px-4 py-2 rounded-md flex items-center ${
-                viewMode === 'list' ? 'bg-white shadow' : ''
-              }`}
-            >
-              <List className='h-4 w-4 mr-2' />
-              List
-            </button>
-          </div>
+          <ViewToggle viewMode={viewMode} onViewModeChange={setViewMode} />
         </div>
       </div>
 
