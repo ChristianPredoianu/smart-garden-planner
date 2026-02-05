@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useMemo } from 'react';
+import SearchInput from '@/components/ui/SearchInput';
 import PlantCard from '@/components/cards/PlantCard';
 import { getAllPlants, getPlantsByType } from '@/lib/plants';
 import { Plant } from '@/lib/types';
@@ -35,16 +36,7 @@ export default function PlantsPage() {
         <div className='flex flex-col md:flex-row gap-4'>
           {/* Search */}
           <div className='flex-1'>
-            <div className='relative'>
-              <Search className='absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5' />
-              <input
-                type='text'
-                placeholder='Search plants by name or description...'
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                className='w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500'
-              />
-            </div>
+            <SearchInput value={searchTerm} onChange={setSearchTerm} />
           </div>
 
           {/* Type Filter */}
