@@ -56,14 +56,12 @@ export default function PlantsPage() {
           <ViewToggle viewMode={viewMode} onViewModeChange={setViewMode} />
         </div>
       </div>
-
       {/* Results Count */}
       <div className='flex justify-between items-center'>
         <p className='text-gray-600'>
           Showing {filteredPlants.length} of {allPlants.length} plants
         </p>
       </div>
-
       {/* Plants Grid/List */}
       <AnimatePresence mode='wait'>
         {viewMode === 'grid' ? (
