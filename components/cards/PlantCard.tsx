@@ -1,17 +1,8 @@
 'use client';
 
+import SeasonBadge from '@/components/plant/SeasonBadge';
 import { Plant } from '@/lib/types';
-import {
-  Sprout,
-  Sun,
-  Droplets,
-  CalendarDays,
-  Leaf,
-  Ruler,
-  CircleDot,
-  Trees,
-  Wheat,
-} from 'lucide-react';
+import { Sprout, Sun, Droplets, Leaf, Ruler, Trees, Wheat } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 interface PlantCardProps {
@@ -26,6 +17,8 @@ export default function PlantCard({ plant, onClick, compact = false }: PlantCard
       onClick(plant);
     }
   };
+
+  console.log(plant.harvestSeason);
 
   if (compact) {
     return (
@@ -119,45 +112,9 @@ export default function PlantCard({ plant, onClick, compact = false }: PlantCard
 
         {/* Seasons */}
         <div className='space-y-3 mb-6 flex-grow-0'>
-          <div className='flex items-center'>
-            <CircleDot className='h-4 w-4 text-green-600 mr-2 flex-shrink-0' />
-            <div className='flex flex-wrap gap-1.5'>
-              {plant.sowingSeason.map((season) => (
-                <span
-                  key={`sow-${season}`}
-                  className='px-2.5 py-1 bg-green-50 text-green-700 text-xs font-medium rounded-full'
-                >
-                  {season}
-                </span>
-              ))}
-            </div>
-          </div>
-          <div className='flex items-center'>
-            <Trees className='h-4 w-4 text-blue-600 mr-2 flex-shrink-0' />
-            <div className='flex flex-wrap gap-1.5'>
-              {plant.plantingSeason.map((season) => (
-                <span
-                  key={`plant-${season}`}
-                  className='px-2.5 py-1 bg-blue-50 text-blue-700 text-xs font-medium rounded-full'
-                >
-                  {season}
-                </span>
-              ))}
-            </div>
-          </div>
-          <div className='flex items-center'>
-            <Wheat className='h-4 w-4 text-amber-600 mr-2 flex-shrink-0' />
-            <div className='flex flex-wrap gap-1.5'>
-              {plant.harvestSeason.map((season) => (
-                <span
-                  key={`harvest-${season}`}
-                  className='px-2.5 py-1 bg-amber-50 text-amber-700 text-xs font-medium rounded-full'
-                >
-                  {season}
-                </span>
-              ))}
-            </div>
-          </div>
+          <SeasonBadge type='sowing' seasons={plant.sowingSeason} />
+          <SeasonBadge type='planting' seasons={plant.plantingSeason} />
+          <SeasonBadge type='harvest' seasons={plant.harvestSeason} />
         </div>
 
         {/* Divider - This will push to bottom */}
