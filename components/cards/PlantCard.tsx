@@ -1,8 +1,9 @@
 'use client';
 
+import StatCard from '@/components/cards/StatCard';
 import SeasonBadge from '@/components/plant/SeasonBadge';
 import { Plant } from '@/lib/types';
-import { Sprout, Sun, Droplets, Leaf, Ruler, Trees, Wheat } from 'lucide-react';
+import { Sprout, Sun, Droplets, Leaf, Ruler } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 interface PlantCardProps {
@@ -12,13 +13,9 @@ interface PlantCardProps {
 }
 
 export default function PlantCard({ plant, onClick, compact = false }: PlantCardProps) {
-  const handleClick = () => {
-    if (onClick) {
-      onClick(plant);
-    }
-  };
-
-  console.log(plant.harvestSeason);
+  function handleClick() {
+    if (onClick) onClick(plant);
+  }
 
   if (compact) {
     return (
@@ -90,24 +87,14 @@ export default function PlantCard({ plant, onClick, compact = false }: PlantCard
 
         {/* Quick stats */}
         <div className='grid grid-cols-3 gap-4 mb-6 flex-grow-0'>
-          <div className='bg-gray-50 rounded-lg p-3 text-center group-hover:bg-gray-100 transition-colors'>
-            <Sun className='h-5 w-5 text-amber-500 mx-auto mb-2' />
-            <span className='text-sm font-medium capitalize text-gray-700'>
-              {plant.sun}
-            </span>
-          </div>
-          <div className='bg-gray-50 rounded-lg p-3 text-center group-hover:bg-gray-100 transition-colors'>
-            <Droplets className='h-5 w-5 text-blue-500 mx-auto mb-2' />
-            <span className='text-sm font-medium capitalize text-gray-700'>
-              {plant.water}
-            </span>
-          </div>
-          <div className='bg-gray-50 rounded-lg p-3 text-center group-hover:bg-gray-100 transition-colors'>
-            <Leaf className='h-5 w-5 text-green-500 mx-auto mb-2' />
-            <span className='text-sm font-medium text-gray-700'>
-              {plant.growthDays} days
-            </span>
-          </div>
+          <StatCard icon={Sun} label='Sun' value={plant.sun} color='amber' />
+          <StatCard icon={Droplets} label='Water' value={plant.water} color='blue' />
+          <StatCard
+            icon={Leaf}
+            label='Harvest'
+            value={`${plant.growthDays} days`}
+            color='green'
+          />
         </div>
 
         {/* Seasons */}
