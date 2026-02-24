@@ -32,12 +32,6 @@ export default function PlantsPage() {
     <div className='space-y-6'>
       {/* Hero Section */}
       <div className='relative overflow-hidden py-8 md:py-12'>
-        {/* Bakground decorations */}
-        <div className='absolute inset-0 -z-10'>
-          <div className='absolute top-0 left-1/4 w-72 h-72 bg-gradient-to-br from-green-100/60 to-emerald-50/30 rounded-full blur-3xl' />
-          <div className='absolute bottom-0 right-1/4 w-80 h-80 bg-gradient-to-tl from-green-100/40 to-transparent rounded-full blur-3xl' />
-        </div>
-
         {/* Content */}
         <div className='relative max-w-4xl mx-auto text-center'>
           {/* Icon with animations */}
