@@ -30,17 +30,17 @@ export default function PlantsPage() {
 
   return (
     <div className='space-y-6'>
-      {/* Hero Section - Förbättrad */}
+      {/* Hero Section */}
       <div className='relative overflow-hidden py-8 md:py-12'>
-        {/* Bakgrundsdekorationer */}
+        {/* Bakground decorations */}
         <div className='absolute inset-0 -z-10'>
           <div className='absolute top-0 left-1/4 w-72 h-72 bg-gradient-to-br from-green-100/60 to-emerald-50/30 rounded-full blur-3xl' />
           <div className='absolute bottom-0 right-1/4 w-80 h-80 bg-gradient-to-tl from-green-100/40 to-transparent rounded-full blur-3xl' />
         </div>
 
-        {/* Innehåll */}
+        {/* Content */}
         <div className='relative max-w-4xl mx-auto text-center'>
-          {/* Ikon med animation */}
+          {/* Icon with animations */}
           <motion.div
             initial={{ scale: 0, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
@@ -60,7 +60,7 @@ export default function PlantsPage() {
             </div>
           </motion.div>
 
-          {/* Huvudrubrik med gradient */}
+          {/* Main heading with gradient */}
           <motion.h1
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
@@ -72,7 +72,7 @@ export default function PlantsPage() {
             </span>
           </motion.h1>
 
-          {/* Underrubrik med dekoration */}
+          {/* Subheading with decoration*/}
           <motion.div
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
@@ -83,7 +83,7 @@ export default function PlantsPage() {
               Browse and learn about different vegetables, herbs, and flowers
             </p>
 
-            {/* Dekorativ linje */}
+            {/* Decorative line */}
             <motion.div
               initial={{ scaleX: 0 }}
               animate={{ scaleX: 1 }}
@@ -92,7 +92,7 @@ export default function PlantsPage() {
             />
           </motion.div>
 
-          {/* Snabbstatistik - Visa antal plants */}
+          {/* Stats - Show all plants */}
           <motion.div
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
