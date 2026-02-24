@@ -59,11 +59,9 @@ export default function PlantsPage() {
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.2 }}
-            className='text-4xl md:text-5xl font-bold mb-4 tracking-tight'
+            className='text-4xl md:text-5xl font-bold mb-4 tracking-tight bg-gradient-to-r from-green-800 via-green-600 to-emerald-600 bg-clip-text text-transparent'
           >
-            <span className='bg-gradient-to-r from-green-800 via-green-600 to-emerald-600 bg-clip-text text-transparent'>
-              Plant Database
-            </span>
+            Plant Database
           </motion.h1>
 
           {/* Subheading with decoration*/}
@@ -71,18 +69,18 @@ export default function PlantsPage() {
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.3 }}
-            className='relative'
+            className='relative pb-8'
           >
-            <p className='text-lg md:text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed'>
+            <h2 className='text-lg md:text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed'>
               Browse and learn about different vegetables, herbs, and flowers
-            </p>
+            </h2>
 
             {/* Decorative line */}
             <motion.div
               initial={{ scaleX: 0 }}
               animate={{ scaleX: 1 }}
               transition={{ delay: 0.5, duration: 0.6 }}
-              className='absolute -bottom-4 left-1/2 transform -translate-x-1/2 w-24 h-1 bg-gradient-to-r from-green-400 via-emerald-500 to-green-400 rounded-full'
+              className='absolute left-1/2 bottom-0 transform -translate-x-1/2 w-24 h-1 bg-gradient-to-r from-green-400 via-emerald-500 to-green-400 rounded-full'
             />
           </motion.div>
 
