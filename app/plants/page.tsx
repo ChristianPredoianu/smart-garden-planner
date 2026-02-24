@@ -6,7 +6,7 @@ import SearchInput from '@/components/ui/SearchInput';
 import SelectWithIcons from '@/components/ui/SelectWithIcons';
 import ViewToggle from '@/components/ui/ViewToggle';
 import PlantCard from '@/components/cards/PlantCard';
-import EmptyResults from '@/components/ui/EmptyResults';
+import PlantCollection from '@/components/plants/PlantCollection';
 import { getAllPlants } from '@/lib/plants';
 import { Filter, Leaf, Sprout } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -15,7 +15,7 @@ import { usePlantFilters } from '@/hooks/filters/usePlantFilters';
 export default function PlantsPage() {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedType, setSelectedType] = useState<string>('all');
-  const [viewMode, setViewMode] = useState<string>('grid');
+  const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
 
   const allPlants = getAllPlants();
 
@@ -52,7 +52,7 @@ export default function PlantsPage() {
             placeholder='Filter by type'
             icon={Filter}
           />
-          {/* View Toggle */}
+
           <ViewToggle viewMode={viewMode} onViewModeChange={setViewMode} />
         </div>
       </div>
@@ -65,36 +65,7 @@ export default function PlantsPage() {
       </div>
 
       {/* Plants Grid/List */}
-      <AnimatePresence mode='wait'>
-        {viewMode === 'grid' ? (
-          <motion.div
-            key='grid'
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6'
-          >
-            {plantCards}
-          </motion.div>
-        ) : (
-          <motion.div
-            key='list'
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className='space-y-4'
-          >
-            {plantCards}
-          </motion.div>
-        )}
-      </AnimatePresence>
-
-      {filteredPlants.length === 0 && (
-        <EmptyResults
-          title='No plants found'
-          description='Try adjusting your search or filters'
-        />
-      )}
+      <PlantCollection plants={filteredPlants} viewMode={viewMode} />
     </div>
   );
 }
