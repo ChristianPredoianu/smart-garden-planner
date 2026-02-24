@@ -1,11 +1,11 @@
 import React from 'react';
 import { Grid, List } from 'lucide-react';
 
-type ViewMode = 'grid' | 'list' | string;
+type ViewMode = 'grid' | 'list';
 
 interface ViewToggleProps {
   viewMode: ViewMode;
-  onViewModeChange: (mode: ViewMode) => void;
+  onViewModeChange: (mode: 'grid' | 'list') => void;
   modes?: Array<{
     value: ViewMode;
     label: string;
