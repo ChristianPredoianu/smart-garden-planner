@@ -1,7 +1,9 @@
 'use client';
 
+import StatCard from '@/components/cards/StatCard';
+import SeasonBadge from '@/components/plant/SeasonBadge';
 import { Plant } from '@/lib/types';
-import { Sprout, Sun, Droplets, Calendar, Info } from 'lucide-react';
+import { Sprout, Sun, Droplets, Leaf, Ruler } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 interface PlantCardProps {
@@ -11,94 +13,111 @@ interface PlantCardProps {
 }
 
 export default function PlantCard({ plant, onClick, compact = false }: PlantCardProps) {
-  const handleClick = () => {
-    if (onClick) {
-      onClick(plant);
-    }
-  };
+  function handleClick() {
+    if (onClick) onClick(plant);
+  }
 
   if (compact) {
     return (
-      <motion.div
-        whileHover={{ scale: 1.02 }}
+      <motion.button
+        whileHover={{ x: 2 }}
         whileTap={{ scale: 0.98 }}
         onClick={handleClick}
-        className='bg-white rounded-lg shadow p-3 cursor-pointer border border-green-100 hover:border-green-300 transition-colors'
+        className='group w-full bg-white rounded-xl p-4 text-left transition-all duration-200 hover:bg-gray-50 hover:shadow-md border border-gray-100 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2'
       >
-        <div className='flex items-center'>
+        <div className='flex items-center gap-3'>
           <div
-            className='w-8 h-8 rounded-full mr-3 flex items-center justify-center'
-            style={{ backgroundColor: plant.color }}
+            className='w-10 h-10 rounded-lg flex items-center justify-center transition-transform group-hover:scale-110'
+            style={{
+              backgroundColor: plant.color,
+              boxShadow: `0 4px 12px ${plant.color}40`,
+            }}
           >
-            <Sprout className='h-4 w-4 text-white' />
+            <Sprout className='h-5 w-5 text-white' />
           </div>
-          <div>
-            <h4 className='font-semibold text-gray-800'>{plant.name}</h4>
-            <p className='text-xs text-gray-500'>{plant.latinName}</p>
+          <div className='flex-1 min-w-0'>
+            <h4 className='font-semibold text-gray-900 truncate'>{plant.name}</h4>
+            <p className='text-xs text-gray-500 truncate'>{plant.latinName}</p>
           </div>
         </div>
-      </motion.div>
+      </motion.button>
     );
   }
 
   return (
-    <motion.div
-      whileHover={{ y: -2 }}
+    <motion.article
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
+      whileHover={{ y: -4 }}
       onClick={handleClick}
-      className='bg-white rounded-xl shadow-lg overflow-hidden cursor-pointer border border-green-100 hover:border-green-400 transition-all'
+      className='group bg-white rounded-2xl overflow-hidden cursor-pointer transition-all duration-300 hover:shadow-xl border border-gray-100 flex flex-col h-full'
     >
-      <div className='p-5'>
-        <div className='flex justify-between items-start mb-4'>
-          <div>
-            <h3 className='text-xl font-bold text-gray-800'>{plant.name}</h3>
-            <p className='text-sm text-gray-500 italic'>{plant.latinName}</p>
+      {/* Header with gradient */}
+      <div
+        className='h-2 w-full flex-shrink-0'
+        style={{
+          background: `linear-gradient(90deg, ${plant.color} 0%, ${plant.color}80 100%)`,
+        }}
+      />
+
+      <div className='p-6 flex-grow flex flex-col'>
+        {/* Title section */}
+        <div className='flex items-start justify-between mb-6'>
+          <div className='flex-1 min-w-0'>
+            <h3 className='text-2xl font-bold text-gray-900 mb-1 group-hover:text-green-700 transition-colors'>
+              {plant.name}
+            </h3>
+            <p className='text-sm text-gray-500 font-mono'>{plant.latinName}</p>
           </div>
           <div
-            className='w-12 h-12 rounded-full flex items-center justify-center'
-            style={{ backgroundColor: plant.color }}
+            className='w-14 h-14 rounded-xl flex items-center justify-center ml-4 transition-transform group-hover:scale-110'
+            style={{
+              backgroundColor: plant.color,
+              boxShadow: `0 8px 20px ${plant.color}40`,
+            }}
           >
-            <Sprout className='h-6 w-6 text-white' />
+            <Sprout className='h-7 w-7 text-white' />
           </div>
         </div>
 
-        <p className='text-gray-600 mb-4'>{plant.description}</p>
+        {/* Description */}
+        <p className='text-gray-600 mb-6 leading-relaxed line-clamp-2 flex-grow-0'>
+          {plant.description}
+        </p>
 
-        <div className='grid grid-cols-2 gap-3 mb-4'>
-          <div className='flex items-center'>
-            <Sun className='h-4 w-4 text-yellow-500 mr-2' />
-            <span className='text-sm capitalize'>{plant.sun} sun</span>
-          </div>
-          <div className='flex items-center'>
-            <Droplets className='h-4 w-4 text-blue-500 mr-2' />
-            <span className='text-sm capitalize'>{plant.water} water</span>
-          </div>
+        {/* Quick stats */}
+        <div className='grid grid-cols-3 gap-4 mb-6 flex-grow-0'>
+          <StatCard icon={Sun} label='Sun' value={plant.sun} color='amber' />
+          <StatCard icon={Droplets} label='Water' value={plant.water} color='blue' />
+          <StatCard
+            icon={Leaf}
+            label='Harvest'
+            value={`${plant.growthDays} days`}
+            color='green'
+          />
         </div>
 
-        <div className='space-y-2'>
-          <div className='flex items-center text-sm'>
-            <Calendar className='h-4 w-4 text-green-600 mr-2' />
-            <span>Sow: {plant.sowingSeason.join(', ')}</span>
-          </div>
-          <div className='flex items-center text-sm'>
-            <Calendar className='h-4 w-4 text-blue-600 mr-2' />
-            <span>Plant: {plant.plantingSeason.join(', ')}</span>
-          </div>
-          <div className='flex items-center text-sm'>
-            <Calendar className='h-4 w-4 text-orange-600 mr-2' />
-            <span>Harvest: {plant.harvestSeason.join(', ')}</span>
-          </div>
+        {/* Seasons */}
+        <div className='space-y-3 mb-6 flex-grow-0'>
+          <SeasonBadge type='sowing' seasons={plant.sowingSeason} />
+          <SeasonBadge type='planting' seasons={plant.plantingSeason} />
+          <SeasonBadge type='harvest' seasons={plant.harvestSeason} />
         </div>
 
-        <div className='mt-4 pt-4 border-t border-gray-100'>
-          <div className='flex justify-between text-sm text-gray-500'>
+        {/* Divider - This will push to bottom */}
+        <div className='mt-auto pt-4 border-t border-gray-100'>
+          <div className='flex items-center justify-between text-sm text-gray-500'>
+            <div className='flex items-center'>
+              <Ruler className='h-4 w-4 mr-1.5' />
+              <span>{plant.height}cm</span>
+            </div>
+            <div className='text-gray-400'>•</div>
             <span>Spacing: {plant.spacing}cm</span>
-            <span>Height: {plant.height}cm</span>
+            <div className='text-gray-400'>•</div>
             <span>{plant.growthDays} days</span>
           </div>
         </div>
       </div>
-    </motion.div>
+    </motion.article>
   );
 }
