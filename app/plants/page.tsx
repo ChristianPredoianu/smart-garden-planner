@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import PlantHero from '@/components/plants/PlantHero';
 import PlantFilters from '@/components/plants/PlantFIlters';
-import PlantCollection from '@/components/plants/PlantCollection';
+import PlantCollection from '@/components/plants/plant-collection/PlantCollection';
 import { getAllPlants } from '@/lib/plants';
 import { usePlantFilters } from '@/hooks/filters/usePlantFilters';
 
