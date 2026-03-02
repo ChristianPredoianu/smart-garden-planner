@@ -5,7 +5,7 @@ import PlantCard from './PlantCard';
 import type { Plant } from '@/lib/types';
 
 // Mock child components
-vi.mock('@/components/cards/StatCard', () => ({
+vi.mock('@/components/cards/stat-card/StatCard', () => ({
   default: ({ icon: Icon, label, value, color }: any) => (
     <div data-testid={`stat-${label}`} data-color={color}>
       {label}: {value}
