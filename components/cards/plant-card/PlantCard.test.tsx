@@ -13,7 +13,7 @@ vi.mock('@/components/cards/stat-card/StatCard', () => ({
   ),
 }));
 
-vi.mock('@/components/plant/SeasonBadge', () => ({
+vi.mock('@/components/plant/season-badge/SeasonBadge', () => ({
   default: ({ type, seasons }: any) => (
     <div data-testid={`season-${type}`}>
       {type}: {seasons.join(', ')}
