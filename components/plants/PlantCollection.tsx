@@ -1,7 +1,7 @@
 'use client';
 
 import { motion, AnimatePresence } from 'framer-motion';
-import PlantCard from '@/components/cards/PlantCard';
+import PlantCard from '@/components/cards/plant-card/PlantCard';
 import EmptyResults from '@/components/ui/EmptyResults';
 import { Plant } from '@/lib/types';
 
