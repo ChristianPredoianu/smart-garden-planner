@@ -1,4 +1,3 @@
-// components/plant/SeasonBadge.tsx
 import { CircleDot, Trees, Wheat, LucideIcon } from 'lucide-react';
 
 interface SeasonBadgeProps {
