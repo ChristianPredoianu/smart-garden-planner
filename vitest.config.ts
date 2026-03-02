@@ -9,5 +9,6 @@ export default defineConfig({
     setupFiles: ['./test/setup.ts'],
     globals: true,
     pool: 'forks',
+    clearMocks: true,
   },
 });

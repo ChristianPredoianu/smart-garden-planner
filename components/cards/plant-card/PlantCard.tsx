@@ -54,6 +54,7 @@ export default function PlantCard({ plant, onClick, compact = false }: PlantCard
     >
       {/* Header with gradient */}
       <div
+        data-testid='plant-card-header'
         className='h-2 w-full flex-shrink-0'
         style={{
           background: `linear-gradient(90deg, ${plant.color} 0%, ${plant.color}80 100%)`,
@@ -70,6 +71,7 @@ export default function PlantCard({ plant, onClick, compact = false }: PlantCard
             <p className='text-sm text-gray-500 font-mono'>{plant.latinName}</p>
           </div>
           <div
+            data-testid='plant-card-icon'
             className='w-14 h-14 rounded-xl flex items-center justify-center ml-4 transition-transform group-hover:scale-110'
             style={{
               backgroundColor: plant.color,
