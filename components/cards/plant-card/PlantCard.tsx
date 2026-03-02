@@ -1,6 +1,6 @@
 'use client';
 
-import StatCard from '@/components/cards/StatCard';
+import StatCard from '@/components/cards/stat-card/StatCard';
 import SeasonBadge from '@/components/plant/SeasonBadge';
 import { Plant } from '@/lib/types';
 import { Sprout, Sun, Droplets, Leaf, Ruler } from 'lucide-react';
