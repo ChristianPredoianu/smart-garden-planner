@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import PlantHero from '@/components/plants/PlantHero';
+import PlantHero from '@/components/plants/plant-hero/PlantHero';
 import PlantFilters from '@/components/plants/plant-filters/PlantFIlters';
 import PlantCollection from '@/components/plants/plant-collection/PlantCollection';
 import { getAllPlants } from '@/lib/plants';
