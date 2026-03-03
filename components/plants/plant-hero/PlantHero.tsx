@@ -55,6 +55,7 @@ export default function PlantHero({ totalPlants, categoryCount }: PlantHeroProps
 
           {/* Decorative line */}
           <motion.div
+            data-testid='decorative-line'
             initial={{ scaleX: 0 }}
             animate={{ scaleX: 1 }}
             transition={{ delay: 0.5, duration: 0.6 }}
