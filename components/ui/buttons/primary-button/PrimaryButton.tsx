@@ -9,7 +9,7 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   loading?: boolean;
 }
 
-export default function Button({
+export default function PrimaryButton({
   children,
   variant = 'primary',
   size = 'md',
