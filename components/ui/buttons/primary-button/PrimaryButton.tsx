@@ -44,7 +44,7 @@ export default function PrimaryButton({
       whileTap={{ scale: disabled || loading ? 1 : 0.98 }}
       className={`${baseStyles} ${variants[variant]} ${sizes[size]} ${widthClass} ${disabledClass} ${className}`}
       disabled={disabled || loading}
-      {...props}
+      {...(props as any)}
     >
       {loading ? (
         <>
