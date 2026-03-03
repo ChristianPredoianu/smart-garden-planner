@@ -2,7 +2,7 @@
 
 import { motion, AnimatePresence } from 'framer-motion';
 import PlantCard from '@/components/cards/plant-card/PlantCard';
-import EmptyResults from '@/components/ui/EmptyResults';
+import EmptyResults from '@/components/ui/empty-results/EmptyResults';
 import { Plant } from '@/lib/types';
 
 interface PlantCollectionProps {

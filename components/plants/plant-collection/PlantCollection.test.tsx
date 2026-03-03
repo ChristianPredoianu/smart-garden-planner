@@ -12,7 +12,7 @@ vi.mock('@/components/cards/plant-card/PlantCard', () => ({
   ),
 }));
 
-vi.mock('@/components/ui/EmptyResults', () => ({
+vi.mock('@/components/ui/empty-results/EmptyResults', () => ({
   default: ({ title, description }: any) => (
     <div data-testid='empty-results'>
       <h3>{title}</h3>
