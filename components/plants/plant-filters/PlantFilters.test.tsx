@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { describe, it, expect, vi } from 'vitest';
-import PlantFilters from './PlantFIlters';
+import PlantFilters from './PlantFilters';
 
 // Mock child components
 vi.mock('@/components/ui/SearchInput', () => ({
