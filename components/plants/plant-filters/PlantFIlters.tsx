@@ -2,7 +2,7 @@
 
 import SearchInput from '@/components/ui/search-input/SearchInput';
 import SelectWithIcons from '@/components/ui/select-with-icons/SelectWithIcons';
-import ViewToggle from '@/components/ui/ViewToggle';
+import ViewToggle from '@/components/ui/view-toggle/ViewToggle';
 import { Filter } from 'lucide-react';
 
 interface PlantFiltersProps {
