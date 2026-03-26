@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { render, screen, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { describe, it, expect, vi } from 'vitest';
 import PlantFilters from '@/components/plants/plant-filters/PlantFilters';
@@ -68,7 +68,7 @@ describe('PlantFilters', () => {
     render(<PlantFilters {...defaultProps} />);
     expect(screen.getByTestId('search-input')).toBeInTheDocument();
     expect(screen.getByTestId('select-with-icons')).toBeInTheDocument();
-    expect(screen.getByTestId('view-toggle')).toBeInTheDocument();
+    expect(screen.getByTestId('grid-button')).toBeInTheDocument();
   });
 
   it('passes correct searchTerm to SearchInput', () => {
@@ -93,9 +93,14 @@ describe('PlantFilters', () => {
 
   it('passes plantTypes options to SelectWithIcons', () => {
     render(<PlantFilters {...defaultProps} />);
-    expect(screen.getByText('all')).toBeInTheDocument();
-    expect(screen.getByText('vegetable')).toBeInTheDocument();
-    expect(screen.getByText('herb')).toBeInTheDocument();
+    const select = screen.getByTestId('select-with-icons');
+    const options = within(select).getAllByRole('option');
+
+    expect(options).toHaveLength(4);
+    expect(options[0]).toHaveTextContent('Filter by type');
+    expect(options[1]).toHaveTextContent('All');
+    expect(options[2]).toHaveTextContent('Vegetable');
+    expect(options[3]).toHaveTextContent('Herb');
   });
 
   it('displays the correct placeholder in SelectWithIcons', () => {
