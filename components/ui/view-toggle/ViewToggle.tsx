@@ -42,6 +42,7 @@ export default function ViewToggle({
             onClick={() => onViewModeChange(mode.value)}
             className={`${buttonClassName} ${isActive ? activeButtonClassName : ''}`}
             aria-pressed={isActive}
+            data-testid={`${mode.value}-button`}
           >
             <Icon className={iconClassName} />
             {mode.label}
