@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { describe, it, expect, vi } from 'vitest';
-import PlantFilters from '@/components/plants/plant-filters/plantFilters';
+import PlantFilters from '@/components/plants/plant-filters/PlantFilters';
 
 // Mock child components
 vi.mock('@/components/ui/SearchInput', () => ({
@@ -115,14 +115,22 @@ describe('PlantFilters', () => {
     const { rerender } = render(<PlantFilters {...defaultProps} viewMode='grid' />);
     let gridButton = screen.getByTestId('grid-button');
     let listButton = screen.getByTestId('list-button');
-    expect(gridButton).toHaveClass('active');
-    expect(listButton).not.toHaveClass('active');
+    expect(gridButton).toHaveClass(
+      'px-4 py-2 rounded-md flex items-center bg-white shadow',
+    );
+    expect(listButton).not.toHaveClass(
+      'px-4 py-2 rounded-md flex items-center bg-white shadow',
+    );
 
     rerender(<PlantFilters {...defaultProps} viewMode='list' />);
     gridButton = screen.getByTestId('grid-button');
     listButton = screen.getByTestId('list-button');
-    expect(gridButton).not.toHaveClass('active');
-    expect(listButton).toHaveClass('active');
+    expect(gridButton).not.toHaveClass(
+      'px-4 py-2 rounded-md flex items-center bg-white shadow',
+    );
+    expect(listButton).toHaveClass(
+      'px-4 py-2 rounded-md flex items-center bg-white shadow',
+    );
   });
 
   it('calls onViewModeChange when ViewToggle buttons are clicked', async () => {
