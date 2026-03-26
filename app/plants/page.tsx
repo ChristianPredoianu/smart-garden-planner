@@ -5,7 +5,7 @@ import PlantHero from '@/components/plants/plant-hero/PlantHero';
 import PlantFilters from '@/components/plants/plant-filters/PlantFilters';
 import PlantCollection from '@/components/plants/plant-collection/PlantCollection';
 import { getAllPlants } from '@/lib/plants';
-import { usePlantFilters } from '@/hooks/filters/usePlantFilters';
+import { usePlantFilters } from '@/hooks/filters/use-plant-filters/usePlantFilters';
 
 export default function PlantsPage() {
   const [searchTerm, setSearchTerm] = useState('');
